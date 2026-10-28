@@ -22,7 +22,9 @@ const QuantityStepper = ({ qty, onKurang, onTambah }) => {
           isZero && styles.disabled,
         ]}
       >
-        <Text style={[styles.btnText, isZero && styles.btnTextDisabled]}>-</Text>
+        <Text style={[styles.btnText, isZero && styles.btnTextDisabled]}>
+          -
+        </Text>
       </Pressable>
 
       <View style={styles.qtyContainer}>

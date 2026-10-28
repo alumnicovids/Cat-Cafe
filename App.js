@@ -1,9 +1,9 @@
-import { use, useState } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, FlatList, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 
-import { colors, spacing } from "./src/presentation/theme";
+import { colors, spacing, typography } from "./src/presentation/theme";
 import { tambahJumlah, kurangiJumlah } from "./src/domain/orderRules";
 import AppHeader from "./src/presentation/components/AppHeader";
 import OrderSummary from "./src/presentation/components/OrderSummary";
@@ -39,13 +39,21 @@ const App = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
-      <AppHeader title="Kafe Kucing" subtitle="Pilih menu favoritmu" />
-      <OrderSummary totalCount={totalPesanan} totalHarga={totalHarga} />
+      <StatusBar style="dark" backgroundColor={colors.sand} />
 
       <FlatList
         data={DAFTAR_MENU}
         keyExtractor={(item) => `${item.id}-${resetKey}`}
+        ListHeaderComponent={
+          <View>
+            <AppHeader
+              title="Kafe Kucing"
+              subtitle="Pesan makanan dan minuman hangat untuk menemanimu bersama kucing."
+            />
+            <OrderSummary totalCount={totalPesanan} totalHarga={totalHarga} />
+            <Text style={styles.sectionTitle}>Pilihan Menu</Text>
+          </View>
+        }
         renderItem={({ item }) => (
           <MenuItem
             nama={item.nama}
@@ -54,14 +62,17 @@ const App = () => {
             onKurangPesanan={handleKurangi}
           />
         )}
+        ListFooterComponent={
+          <AppButton
+            label="Reset Semua Pesanan"
+            variant="outline"
+            disabled={totalPesanan === 0}
+            onPress={handleReset}
+            style={styles.btnReset}
+          />
+        }
+        contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
-      />
-
-      <AppButton
-        label="Reset Pesanan"
-        variant="outline"
-        onPress={handleReset}
-        style={styles.btnReset}
       />
     </SafeAreaView>
   );
@@ -73,7 +84,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.sand,
-    paddingHorizontal: spacing.s4,
   },
-  btnReset: { marginVertical: spacing.s3 },
+  listContent: {
+    paddingHorizontal: spacing.s4,
+    paddingBottom: spacing.s6,
+  },
+  sectionTitle: {
+    fontSize: typography.h2.fontSize,
+    fontWeight: typography.h2.fontWeight,
+    lineHeight: typography.h2.lineHeight,
+    color: colors.dark,
+    marginTop: spacing.s2,
+    marginBottom: spacing.s3,
+  },
+  btnReset: {
+    marginTop: spacing.s4,
+    marginBottom: spacing.s6,
+  },
 });
