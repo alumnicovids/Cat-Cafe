@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet } from "react-native";
-import { colors, spacing } from "../theme";
+import { colors, spacing, typography } from "../theme";
 
 const AppHeader = ({ title, subtitle }) => {
   return (
     <View style={styles.header}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.subtitle}>{subtitle}</Text>
+      {subtitle && <Text style={styles.subtitle}>{subtitle}</Text>}
     </View>
   );
 };
@@ -13,7 +13,21 @@ const AppHeader = ({ title, subtitle }) => {
 export default AppHeader;
 
 const styles = StyleSheet.create({
-  header: { paddingVertical: spacing.s6 },
-  title: { fontSize: 30, fontWeight: "700", color: colors.dark },
-  subtitle: { fontSize: 14, color: colors.stone, marginTop: spacing.s1 },
+  header: {
+    paddingTop: spacing.s4,
+    paddingBottom: spacing.s4,
+  },
+  title: {
+    fontSize: typography.hero.fontSize,
+    fontWeight: typography.hero.fontWeight,
+    lineHeight: typography.hero.lineHeight,
+    color: colors.dark,
+    letterSpacing: -0.5,
+  },
+  subtitle: {
+    fontSize: typography.bodyNormal.fontSize,
+    lineHeight: typography.bodyNormal.lineHeight,
+    color: colors.stone,
+    marginTop: spacing.s1,
+  },
 });
