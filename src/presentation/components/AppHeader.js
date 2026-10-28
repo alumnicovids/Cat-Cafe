@@ -10,6 +10,8 @@ const AppHeader = ({ title, subtitle }) => {
   );
 };
 
+export default AppHeader;
+
 const styles = StyleSheet.create({
   header: { paddingVertical: spacing.s6 },
   title: { fontSize: 30, fontWeight: "700", color: colors.dark },
