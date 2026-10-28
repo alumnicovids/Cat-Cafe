@@ -5,7 +5,7 @@ const AppButton = ({ label, onPress, variant = "solid", style }) => {
   const isSolid = variant == "solid";
   return (
     <TouchableOpacity
-      style={[style.base, isSolid ? styles.solid : styles.outline]}
+      style={[styles.base, isSolid ? styles.solid : styles.outline]}
       onPress={onPress}
     >
       <Text
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   solid: { backgroundColor: colors.primary500 },
-  outline: { borderWidht: 1.5, borderColor: colors.primary500 },
+  outline: { borderWidth: 1.5, borderColor: colors.primary500 },
   text: { fontSize: 16, fontWeight: "600" },
   textSolid: { color: colors.white },
   textOutline: { color: colors.primary700 },

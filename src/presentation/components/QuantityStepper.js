@@ -10,7 +10,7 @@ const QuantityStepper = ({ qty, onKurang }) => {
         onPress={onKurang}
         disabled={kosong}
       >
-        <Text style={styles.styles.btnText}>-</Text>
+        <Text style={styles.btnText}>-</Text>
       </TouchableOpacity>
       <Text style={styles.qty}>{qty}</Text>
     </View>
