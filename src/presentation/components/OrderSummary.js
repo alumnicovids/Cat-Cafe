@@ -5,7 +5,7 @@ import {
   hitungHargaAkhir,
   DISKON,
 } from "../../domain/orderRules";
-import { formatRupiaih } from "../../shared/formatRupiah";
+import { formatRupiah } from "../../shared/formatRupiah";
 import PromoBadge from "./PromoBadge";
 
 const OrderSummary = ({ totalCount, totalHarga }) => {
@@ -13,7 +13,7 @@ const OrderSummary = ({ totalCount, totalHarga }) => {
     <View style={styles.box}>
       <Text style={styles.total}>Total Item Dipesan: {totalCount}</Text>
       <Text style={styles.harga}>
-        Total Harga: {formatRupiaih(hitungHargaAkhir(totalHarga, totalCount))}
+        Total Harga: {formatRupiah(hitungHargaAkhir(totalHarga, totalCount))}
       </Text>
       {berhakDiskon(totalCount) && (
         <PromoBadge
